@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Nav = props => (
+const Nav = (props) => (
     <nav class="main-nav">
         <ul>
             <li><a href='#'>Cats</a></li>
