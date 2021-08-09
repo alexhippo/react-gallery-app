@@ -1,5 +1,5 @@
 import './App.css';
-import apiKey from '../config';
+import apiKey from './config.js';
 
 // App components
 import Search from './components/Search';
