@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# React Gallery App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is an Image Gallery App made with React. This project was created as part of the [Treehouse Full Stack Javascript Techdegree](https://teamtreehouse.com/techdegree/full-stack-javascript).
 
 ## Available Scripts
 
