@@ -1,8 +1,10 @@
 import React from 'react';
 
+const url = "https://live.staticflickr.com/"
+
 const Photo = (props) => (
     <li>
-        <img src="https://farm5.staticflickr.com/4425/36337012384_ba3365621e.jpg" alt="" />
+        <img src={`${url}${props.server}/${props.id}_${props.secret}.jpg`} alt="" />
     </li>
 );
 
