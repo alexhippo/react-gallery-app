@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import apiKey from './config.js';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -41,9 +41,13 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          <Search />
+          <Search onSearch={this.performSearch} />
           <Nav />
           <PhotoContainer data={this.state.photos} />
+          {/* <Switch>
+            <Route path="/" component={() => <PhotoContainer data={this.state.photos} />} />
+            <Route path="/:searchTerm" component={() => <PhotoContainer data={this.state.photos} />} />
+          </Switch> */}
         </div>
       </BrowserRouter>
     );
