@@ -1,13 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap');
+
 body {
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Atkinson Hyperlegible', sans-serif;
   color: #3f4850;
+  background-color: #252422;
 }
 
 h2 {
   font-size: 2em;
   margin: 52px 0 40px;
   text-transform: capitalize;
+  color: #fffcf2;
 }
 
 ul {
@@ -27,11 +31,15 @@ a {
 
 .search-form button {
   outline: none;
-  background-color: #438bbd;
+  background-color: #EB5E28;
   border: none;
   padding: 0px 15px;
   border-radius: 0 0.35em 0.35em 0;
   cursor: pointer;
+}
+
+.search-form button:hover {
+  background-color: #EF8257;
 }
 
 input {
@@ -48,20 +56,22 @@ input {
 .main-nav li {
   width: 100%;
   margin-bottom: 1em;
+  padding: 10px;
 }
 
 .main-nav a {
   display: block;
-  background: #438bbd;
+  background: #403D39;
   border-radius: 3px;
-  padding: 5px;
+  padding: 10px;
+  width: 100px;
   color: #fff;
 }
 
 .main-nav .active,
-.main-nav a:hover,
-.search-form button:hover {
-  background-color: #275270;
+.main-nav a:hover {
+  background-color: #CCC5B9;
+  color: #000;
 }
 
 .photo-container ul {
