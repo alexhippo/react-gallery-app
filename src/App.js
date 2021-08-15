@@ -61,10 +61,10 @@ class App extends Component {
         <Search onSearch={this.performSearch} />
         <Nav />
         <Switch>
-          <Route exact path="/" component={() => <PhotoContainer data={this.state.photos} />} />
-          <Route path="/munchkin-cats" component={() => <PhotoContainer data={this.state.photos} />} />
-          <Route path="/scottish-fold-cats" component={() => <PhotoContainer data={this.state.photos} />} />
-          <Route path="/british-short-hair-cats" component={() => <PhotoContainer data={this.state.photos} />} />
+          <Route exact path="/" component={() => <PhotoContainer data={this.state.photos} title={'Cats Results'} />} />
+          <Route path="/munchkin-cats" component={() => <PhotoContainer data={this.state.photos} title={'Munchkin Cats Results'} />} />
+          <Route path="/scottish-fold-cats" component={() => <PhotoContainer data={this.state.photos} title={'Scottish Fold Cats Results'} />} />
+          <Route path="/british-short-hair-cats" component={() => <PhotoContainer data={this.state.photos} title={'British Short Hair Cat Results'} />} />
           <Route exact path="/search/:query" component={() => <PhotoContainer data={this.state.photos} />} />
         </Switch>
       </div>
