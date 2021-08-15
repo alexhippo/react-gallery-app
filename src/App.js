@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import apiKey from './config.js';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 // App components
@@ -9,19 +9,26 @@ import Search from './components/Search';
 import Nav from './components/Nav';
 import PhotoContainer from './components/PhotoContainer';
 
-export default class App extends Component {
-
+class App extends Component {
   constructor() {
     super();
     this.state = {
       photos: [],
-      loading: true
+      searchTerm: ''
     };
   }
 
   componentDidMount() {
-    //get the query from the url and perform
+    // if a path name exists - search by pathname
+    // filter out the pathname to get the search term
+    // if not - default search
     this.performSearch();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.performSearch(this.props.location.pathname);
+    }
   }
 
   performSearch = (query = 'cats') => {
@@ -29,7 +36,6 @@ export default class App extends Component {
       .then(response => {
         this.setState({
           photos: response.data.photos.photo,
-          loading: false
         })
       })
       .catch(error => {
@@ -39,19 +45,18 @@ export default class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div className="container">
-          <Search onSearch={this.performSearch} />
-          <Nav />
-          <Switch>
-            <Route exact path="/" component={() => <PhotoContainer data={this.state.photos} />} />
-            <Route path="/maine-coon-cats" component={() => <PhotoContainer onSearch={this.performSearch} searchTerm={'cats'} data={this.state.photos} />} />
-            <Route path="/scottish-fold-cats" component={() => <PhotoContainer onSearch={this.performSearch} searchTerm={'cats'} data={this.state.photos} />} />
-            <Route path="/british-short-hair-cats" component={() => <PhotoContainer onSearch={this.performSearch} searchTerm={'cats'} data={this.state.photos} />} />
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <div className="container">
+        <Search onSearch={this.performSearch} />
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={() => <PhotoContainer data={this.state.photos} />} />
+          <Route path="/munchkin-cats" component={() => <PhotoContainer data={this.state.photos} />} />
+          <Route path="/scottish-fold-cats" component={() => <PhotoContainer data={this.state.photos} />} />
+          <Route path="/british-short-hair-cats" component={() => <PhotoContainer data={this.state.photos} />} />
+        </Switch>
+      </div>
     );
   }
-
 }
+
+export default withRouter(App);

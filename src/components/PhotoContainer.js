@@ -2,18 +2,9 @@ import React, { Component } from 'react';
 import Photo from './Photo';
 
 class PhotoContainer extends Component {
-
-    state = {
-        searchTerm: this.props.searchTerm
-    }
-
-    onResultsChange = (e) => {
-        this.props.onSearch(this.state.searchTerm);
-    }
-
     render() {
         return (
-            <div className="photo-container" onChange={this.onResultsChange}>
+            <div className="photo-container">
                 <h2>Results</h2>
                 <ul>
                     {this.props.data.map((photo) => {
