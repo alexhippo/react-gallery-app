@@ -56,20 +56,20 @@ input {
 .main-nav li {
   width: 100%;
   margin-bottom: 1em;
-  padding: 10px;
 }
 
-.main-nav a {
+.main-nav a,
+.page-not-found li a {
   display: block;
   background: #403D39;
   border-radius: 3px;
-  padding: 10px;
-  width: 100px;
+  padding: 5px;
   color: #fff;
 }
 
 .main-nav .active,
-.main-nav a:hover {
+.main-nav a:hover,
+.page-not-found a:hover {
   background-color: #CCC5B9;
   color: #000;
 }
@@ -123,7 +123,8 @@ input {
     margin: auto;
   }
 
-  .main-nav ul {
+  .main-nav ul,
+  .page-not-found ul {
     display: flex;
     justify-content: center;
   }

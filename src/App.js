@@ -8,6 +8,7 @@ import axios from 'axios';
 import Search from './components/Search';
 import Nav from './components/Nav';
 import PhotoContainer from './components/PhotoContainer';
+import PageNotFound from './components/PageNotFound';
 
 class App extends Component {
   constructor() {
@@ -22,14 +23,22 @@ class App extends Component {
     if (currentPathname === "/") {
       this.performSearch();
     } else {
-      this.performSearch(this.getSearchTermFromPathname(currentPathname));
+      if (this.isCurrentPathnameValid(currentPathname)) {
+        this.performSearch(this.getSearchTermFromPathname(currentPathname));
+      }
     }
   }
 
   componentDidUpdate(prevProps) {
     const currentPathname = this.props.location.pathname;
     if (currentPathname !== prevProps.location.pathname) {
-      this.performSearch(this.getSearchTermFromPathname(currentPathname));
+      if (currentPathname === '/') {
+        this.performSearch();
+      } else {
+        if (this.isCurrentPathnameValid(currentPathname)) {
+          this.performSearch(this.getSearchTermFromPathname(currentPathname));
+        }
+      }
     }
   }
 
@@ -41,6 +50,13 @@ class App extends Component {
       searchTerm = searchTerm.replace('search', ' ').trim();
       return searchTerm;
     }
+  }
+
+  isCurrentPathnameValid(pathname) {
+    return (pathname.includes('search') ||
+      pathname.includes('munchkin-cats') ||
+      pathname.includes('scottish-fold-cats') ||
+      pathname.includes('british-short-hair-cats'))
   }
 
   performSearch = (query = 'cats') => {
@@ -61,26 +77,39 @@ class App extends Component {
         <Search onSearch={this.performSearch} />
         <Nav />
         <Switch>
-          <Route exact path="/" component={() => <PhotoContainer
-            data={this.state.photos}
-            title={'Cats Results'} />}
+          <Route exact path="/" component={() =>
+            <PhotoContainer
+              data={this.state.photos}
+              title={'Cats Results'}
+            />}
           />
-          <Route path="/munchkin-cats" component={() => <PhotoContainer
-            data={this.state.photos}
-            title={'Munchkin Cats Results'} />}
+          <Route path="/munchkin-cats" component={() =>
+            <PhotoContainer
+              data={this.state.photos}
+              title={'Munchkin Cats Results'}
+            />}
           />
-          <Route path="/scottish-fold-cats" component={() => <PhotoContainer
-            data={this.state.photos}
-            title={'Scottish Fold Cats Results'} />}
+          <Route path="/scottish-fold-cats" component={() =>
+            <PhotoContainer
+              data={this.state.photos}
+              title={'Scottish Fold Cats Results'}
+            />}
           />
-          <Route path="/british-short-hair-cats" component={() => <PhotoContainer
-            data={this.state.photos}
-            title={'British Short Hair Cat Results'} />}
+          <Route path="/british-short-hair-cats" component={() =>
+            <PhotoContainer
+              data={this.state.photos}
+              title={'British Short Hair Cats Results'}
+            />}
           />
-          <Route exact path="/search/:query" component={() => <PhotoContainer
-            data={this.state.photos}
-            title={`${this.getSearchTermFromPathname(this.props.location.pathname)} Results`} />}
+          <Route exact path="/search/:query" component={() =>
+            <PhotoContainer
+              data={this.state.photos}
+              title={`${this.getSearchTermFromPathname(this.props.location.pathname)} Results`}
+            />}
           />
+          <Route path="*">
+            <PageNotFound />
+          </Route>
         </Switch>
       </div>
     );
