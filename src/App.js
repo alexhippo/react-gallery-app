@@ -19,16 +19,22 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // if a path name exists - search by pathname
-    // filter out the pathname to get the search term
-    // if not - default search
-    this.performSearch();
+    if (this.props.location.pathname === "/") {
+      this.performSearch();
+    } else {
+      this.performSearch(this.getSearchTermFromPathname(this.props.location.pathname));
+    }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      this.performSearch(this.props.location.pathname);
+      this.performSearch(this.getSearchTermFromPathname(this.props.location.pathname));
     }
+  }
+
+  getSearchTermFromPathname(pathname) {
+    let searchTerm = pathname.replace(/[^A-Za-z0-9]+/g, ' ').trim();
+    return searchTerm;
   }
 
   performSearch = (query = 'cats') => {
