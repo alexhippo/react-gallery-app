@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Photo from './Photo';
-import NotFound from './NotFound';
+import NoResults from './NoResults';
 
 class PhotoContainer extends Component {
     render() {
@@ -13,7 +13,7 @@ class PhotoContainer extends Component {
                             return <Photo server={photo.server} id={photo.id} key={photo.id} secret={photo.secret} />
                         })
                         :
-                        <NotFound />
+                        <NoResults />
                     }
                 </ul>
             </div>
