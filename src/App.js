@@ -14,27 +14,33 @@ class App extends Component {
     super();
     this.state = {
       photos: [],
-      searchTerm: ''
     };
   }
 
   componentDidMount() {
-    if (this.props.location.pathname === "/") {
+    const currentPathname = this.props.location.pathname;
+    if (currentPathname === "/") {
       this.performSearch();
     } else {
-      this.performSearch(this.getSearchTermFromPathname(this.props.location.pathname));
+      this.performSearch(this.getSearchTermFromPathname(currentPathname));
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      this.performSearch(this.getSearchTermFromPathname(this.props.location.pathname));
+    const currentPathname = this.props.location.pathname;
+    if (currentPathname !== prevProps.location.pathname) {
+      this.performSearch(this.getSearchTermFromPathname(currentPathname));
     }
   }
 
   getSearchTermFromPathname(pathname) {
     let searchTerm = pathname.replace(/[^A-Za-z0-9]+/g, ' ').trim();
-    return searchTerm;
+    if (!searchTerm.includes('search')) {
+      return searchTerm;
+    } else {
+      searchTerm = searchTerm.replace('search', ' ').trim();
+      return searchTerm;
+    }
   }
 
   performSearch = (query = 'cats') => {
@@ -59,6 +65,7 @@ class App extends Component {
           <Route path="/munchkin-cats" component={() => <PhotoContainer data={this.state.photos} />} />
           <Route path="/scottish-fold-cats" component={() => <PhotoContainer data={this.state.photos} />} />
           <Route path="/british-short-hair-cats" component={() => <PhotoContainer data={this.state.photos} />} />
+          <Route exact path="/search/:query" component={() => <PhotoContainer data={this.state.photos} />} />
         </Switch>
       </div>
     );
