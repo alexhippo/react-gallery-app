@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import apiKey from './config.js';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 // App components
@@ -21,27 +21,21 @@ class App extends Component {
 
   componentDidMount() {
     const currentPathname = this.props.location.pathname;
-    if (currentPathname === "/") {
-      this.performSearch();
-    } else {
+    if (this.isCurrentPathnameValid(currentPathname)) {
+      this.performSearch(this.getSearchTermFromPathname(currentPathname));
+    }
+  }
+
+
+  componentDidUpdate(prevProps) {
+    const currentPathname = this.props.location.pathname;
+    if (currentPathname !== prevProps.location.pathname) {
       if (this.isCurrentPathnameValid(currentPathname)) {
         this.performSearch(this.getSearchTermFromPathname(currentPathname));
       }
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const currentPathname = this.props.location.pathname;
-    if (currentPathname !== prevProps.location.pathname) {
-      if (currentPathname === '/') {
-        this.performSearch();
-      } else {
-        if (this.isCurrentPathnameValid(currentPathname)) {
-          this.performSearch(this.getSearchTermFromPathname(currentPathname));
-        }
-      }
-    }
-  }
 
   getSearchTermFromPathname(pathname) {
     let searchTerm = pathname.replace(/[^A-Za-z0-9]+/g, ' ').trim();
@@ -83,13 +77,9 @@ class App extends Component {
         <Search onSearch={this.performSearch} />
         <Nav />
         <Switch>
-          <Route exact path="/" component={() =>
-            <PhotoContainer
-              data={this.state.photos}
-              loading={this.state.loading}
-              title={'Cats Results'}
-            />}
-          />
+          <Route exact path="/">
+            <Redirect to="/munchkin-cats" />
+          </Route>
           <Route path="/munchkin-cats" component={() =>
             <PhotoContainer
               data={this.state.photos}

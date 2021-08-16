@@ -110,6 +110,7 @@ input {
 
 .loading h2 {
   color: #EB5E28;
+  text-transform: none;
 }
 
 @media only screen and (max-width: 767px)  {
