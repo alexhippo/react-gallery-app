@@ -103,6 +103,15 @@ input {
   width: 100%;
 }
 
+.loading {
+  justify-content: center;
+  width: 100%;
+}
+
+.loading h2 {
+  color: #EB5E28;
+}
+
 @media only screen and (max-width: 767px)  {
   body {
     padding-top: 2em;

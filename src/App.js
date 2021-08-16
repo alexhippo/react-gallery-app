@@ -15,6 +15,7 @@ class App extends Component {
     super();
     this.state = {
       photos: [],
+      loading: true
     };
   }
 
@@ -60,10 +61,15 @@ class App extends Component {
   }
 
   performSearch = (query = 'cats') => {
+    this.setState({
+      loading: true
+    });
+
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
           photos: response.data.photos.photo,
+          loading: false
         })
       })
       .catch(error => {
@@ -80,30 +86,35 @@ class App extends Component {
           <Route exact path="/" component={() =>
             <PhotoContainer
               data={this.state.photos}
+              loading={this.state.loading}
               title={'Cats Results'}
             />}
           />
           <Route path="/munchkin-cats" component={() =>
             <PhotoContainer
               data={this.state.photos}
+              loading={this.state.loading}
               title={'Munchkin Cats Results'}
             />}
           />
           <Route path="/scottish-fold-cats" component={() =>
             <PhotoContainer
               data={this.state.photos}
+              loading={this.state.loading}
               title={'Scottish Fold Cats Results'}
             />}
           />
           <Route path="/british-short-hair-cats" component={() =>
             <PhotoContainer
               data={this.state.photos}
+              loading={this.state.loading}
               title={'British Short Hair Cats Results'}
             />}
           />
           <Route exact path="/search/:query" component={() =>
             <PhotoContainer
               data={this.state.photos}
+              loading={this.state.loading}
               title={`${this.getSearchTermFromPathname(this.props.location.pathname)} Results`}
             />}
           />
