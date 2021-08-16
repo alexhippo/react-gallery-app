@@ -1,8 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Nav = (props) => (
-
+const Nav = () => (
     <nav className="main-nav">
         <ul>
             <li><NavLink to='/munchkin-cats'>Munchkin Cats</NavLink></li>

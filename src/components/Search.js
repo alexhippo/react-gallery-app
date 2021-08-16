@@ -2,20 +2,28 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 class Search extends Component {
-
     state = {
         searchTerm: ''
     }
 
-    onSearchChange = (e) => {
+    /**
+     * Capture the value of the Search input field as Search term and set state of Search component
+     * @param {Event} event - event object from Search input field 
+     */
+    onSearchChange = (event) => {
         this.setState({
-            searchTerm: e.target.value
+            searchTerm: event.target.value
         });
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        e.currentTarget.reset();
+    /**
+     * Prevent default form submission and reset after Search is conducted
+     * Push path with Search term
+     * @param {Event} event - event object from the Search form
+     */
+    handleSubmit = (event) => {
+        event.preventDefault();
+        event.currentTarget.reset();
 
         let path = `/search/${this.state.searchTerm}`;
         this.props.history.push(path);

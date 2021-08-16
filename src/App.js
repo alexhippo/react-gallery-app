@@ -26,7 +26,6 @@ class App extends Component {
     }
   }
 
-
   componentDidUpdate(prevProps) {
     const currentPathname = this.props.location.pathname;
     if (currentPathname !== prevProps.location.pathname) {
@@ -36,7 +35,11 @@ class App extends Component {
     }
   }
 
-
+  /**
+   * Gets the search term from the current url pathname
+   * @param {String} pathname - The current url path e.g. /munchkin-cats
+   * @returns {String} searchTerm - the search term e.g. "munchkin cats"
+   */
   getSearchTermFromPathname(pathname) {
     let searchTerm = pathname.replace(/[^A-Za-z0-9]+/g, ' ').trim();
     if (!searchTerm.includes('search')) {
@@ -47,6 +50,12 @@ class App extends Component {
     }
   }
 
+  /**
+   * Determine whether the current URL pathname is valid for searching.
+   * A "valid" pathname is something like /scottish-fold-cats, but not /page-not-found
+   * @param {String} pathname - The current url path
+   * @returns {Boolean} - Whether the current pathname is valid for searching
+   */
   isCurrentPathnameValid(pathname) {
     return (pathname.includes('search') ||
       pathname.includes('munchkin-cats') ||
@@ -54,6 +63,11 @@ class App extends Component {
       pathname.includes('british-short-hair-cats'))
   }
 
+
+  /**
+   * Fetch photos from Flickr Photo Search API to display in the gallery
+   * @param {String} query - query to search for, e.g. 'cats'
+   */
   performSearch = (query = 'cats') => {
     this.setState({
       loading: true
