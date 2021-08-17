@@ -42,7 +42,7 @@ class App extends Component {
    * @returns {String} searchTerm - the search term e.g. "munchkin cats"
    */
   getSearchTermFromPathname(pathname) {
-    let searchTerm = pathname.replace(/[^A-Za-z0-9]+/g, ' ').trim();
+    let searchTerm = pathname.replace(/[//-]+/g, ' ').trim();
     if (!searchTerm.includes('search')) {
       return searchTerm;
     } else {
@@ -54,27 +54,27 @@ class App extends Component {
   /**
    * Determine whether the current URL pathname is valid for searching.
    * A "valid" pathname is something like /scottish-fold-cats, but not /page-not-found
+   * If invalid - a 404 Page Not Found error is displayed
    * @param {String} pathname - The current url path
    * @returns {Boolean} - Whether the current pathname is valid for searching
    */
   isCurrentPathnameValid(pathname) {
-    return (pathname.includes('search') ||
-      pathname.includes('munchkin-cats') ||
-      pathname.includes('scottish-fold-cats') ||
-      pathname.includes('british-short-hair-cats'))
+    return ((pathname.includes('search')) ||
+      (pathname === '/munchkin-cats') ||
+      (pathname === '/scottish-fold-cats') ||
+      (pathname === '/british-short-hair-cats'))
   }
-
 
   /**
    * Fetch photos from Flickr Photo Search API to display in the gallery
    * @param {String} query - query to search for, e.g. 'cats'
    */
-  performSearch = (query = 'cats') => {
+  performSearch(tags = 'cats') {
     this.setState({
       loading: true
     });
 
-    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
+    axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tags}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
           photos: response.data.photos.photo,

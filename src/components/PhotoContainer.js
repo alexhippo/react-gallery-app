@@ -11,6 +11,9 @@ class PhotoContainer extends Component {
                 <h2>{this.props.title ? this.props.title : 'Results'}</h2>
                 <ul>
                     {
+                        // If an error with fetching the photos occurs - display the error
+                        // Else - display the Loading indicator until the photos are fetched
+                        // Then display the photos 
                         (this.props.error)
                             ? <Error error={this.props.error} />
                             : (this.props.loading)
