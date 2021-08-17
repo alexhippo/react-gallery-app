@@ -15,7 +15,8 @@ class App extends Component {
     super();
     this.state = {
       photos: [],
-      loading: true
+      loading: true,
+      error: null
     };
   }
 
@@ -77,11 +78,15 @@ class App extends Component {
       .then(response => {
         this.setState({
           photos: response.data.photos.photo,
-          loading: false
+          loading: false,
+          error: null
         })
       })
       .catch(error => {
         console.log('Error fetching and parsing data', error);
+        this.setState({
+          error: `Sorry, something went wrong. Please try again later.`
+        });
       });
   }
 
@@ -99,6 +104,7 @@ class App extends Component {
               data={this.state.photos}
               loading={this.state.loading}
               title={'Munchkin Cats Results'}
+              error={this.state.error}
             />}
           />
           <Route path="/scottish-fold-cats" component={() =>
@@ -106,6 +112,7 @@ class App extends Component {
               data={this.state.photos}
               loading={this.state.loading}
               title={'Scottish Fold Cats Results'}
+              error={this.state.error}
             />}
           />
           <Route path="/british-short-hair-cats" component={() =>
@@ -113,6 +120,7 @@ class App extends Component {
               data={this.state.photos}
               loading={this.state.loading}
               title={'British Short Hair Cats Results'}
+              error={this.state.error}
             />}
           />
           <Route exact path="/search/:query" component={() =>
@@ -120,6 +128,7 @@ class App extends Component {
               data={this.state.photos}
               loading={this.state.loading}
               title={`${this.getSearchTermFromPathname(this.props.location.pathname)} Results`}
+              error={this.state.error}
             />}
           />
           <Route path="*">

@@ -103,13 +103,17 @@ input {
   width: 100%;
 }
 
-.loading {
+.loading, .error {
   justify-content: center;
   width: 100%;
 }
 
 .loading h2 {
   color: #EB5E28;
+  text-transform: none;
+}
+
+.error h2 {
   text-transform: none;
 }
 
