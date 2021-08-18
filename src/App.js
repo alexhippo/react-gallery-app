@@ -102,7 +102,7 @@ class App extends Component {
             <PhotoContainer
               data={this.state.photos}
               loading={this.state.loading}
-              title={'Munchkin Cats Results'}
+              title={'Munchkin Cats'}
               error={this.state.error}
             />}
           />
@@ -110,7 +110,7 @@ class App extends Component {
             <PhotoContainer
               data={this.state.photos}
               loading={this.state.loading}
-              title={'Scottish Fold Cats Results'}
+              title={'Scottish Fold Cats'}
               error={this.state.error}
             />}
           />
@@ -118,7 +118,7 @@ class App extends Component {
             <PhotoContainer
               data={this.state.photos}
               loading={this.state.loading}
-              title={'British Short Hair Cats Results'}
+              title={'British Short Hair Cats'}
               error={this.state.error}
             />}
           />
@@ -126,7 +126,7 @@ class App extends Component {
             <PhotoContainer
               data={this.state.photos}
               loading={this.state.loading}
-              title={`${this.getSearchTermFromPathname(this.props.location.pathname)} Results`}
+              title={`${this.getSearchTermFromPathname(this.props.location.pathname)}`}
               error={this.state.error}
             />}
           />
