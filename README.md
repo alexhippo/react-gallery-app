@@ -15,17 +15,17 @@ This project was created as part of the [Treehouse Full Stack Javascript Techdeg
 ### Downloading
 Click on the 'Code' button and clone this project via command line or select 'Download Zip.'
 
-### Installing
+### Installing and running
 1. Unzip the zip file if you have downloaded this project as a zip file.
 1. Open the folder on the command line, such as Git Bash, Powershell or Terminal.
-1. Run `yarn install` to install all dependencies to run this project.
+1. Run `npm install` to install all dependencies to run this project.
 1. An API key to use the Flickr API is required to run this project. Sign up for an account at [Flickr](https://www.flickr.com) and then sign up for a [Non-Commercial API Key](https://www.flickr.com/services/apps/create/apply/).
-1. Copy details of your key into new file called `config.js` like so:
+1. Copy details of your key into new file in the `src` folder called `config.js` like so:
     ```
     const apiKey = '<your key here>';
     export default apiKey;
     ```
-1. Run `yarn start` or `npm start` to start the portfolio site on your default browser.
+1. Run `npm start` to start the portfolio site on your default browser.
 
 ## Available Scripts
 In the project directory, you can run:
