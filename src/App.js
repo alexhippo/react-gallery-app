@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import apiKey from './config.js';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import axios from 'axios';
