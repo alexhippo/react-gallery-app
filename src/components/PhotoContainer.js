@@ -3,6 +3,7 @@ import Photo from './Photo';
 import NoResults from './NoResults';
 import Loading from './Loading';
 import Error from './Error';
+import PropTypes from 'prop-types';
 
 class PhotoContainer extends Component {
     render() {
@@ -28,6 +29,13 @@ class PhotoContainer extends Component {
             </div>
         );
     }
+}
+
+PhotoContainer.propTypes = {
+    title: PropTypes.string,
+    error: PropTypes.string,
+    loading: PropTypes.bool,
+    data: PropTypes.array
 }
 
 export default PhotoContainer;

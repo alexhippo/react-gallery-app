@@ -25,7 +25,7 @@ Click on the 'Code' button and clone this project via command line or select 'Do
     const apiKey = '<your key here>';
     export default apiKey;
     ```
-1. Run `yarn start` to start the portfolio site on your default browser.
+1. Run `yarn start` or `npm start` to start the portfolio site on your default browser.
 
 ## Available Scripts
 In the project directory, you can run:
@@ -33,7 +33,7 @@ In the project directory, you can run:
 ### `yarn` or `yarn install`
 To update project dependencies.
 
-### `yarn start`
+### `yarn start` or `npm start`
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 

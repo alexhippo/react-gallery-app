@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const url = "https://live.staticflickr.com/"
 
@@ -7,5 +8,11 @@ const Photo = (props) => (
         <img src={`${url}${props.server}/${props.id}_${props.secret}.jpg`} alt="" />
     </li>
 );
+
+Photo.propTypes = {
+    server: PropTypes.string,
+    id: PropTypes.string,
+    secret: PropTypes.string,
+}
 
 export default Photo;
