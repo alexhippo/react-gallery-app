@@ -38,8 +38,10 @@ a {
   cursor: pointer;
 }
 
-.search-form button:hover {
-  background-color: #EF8257;
+.search-form button:hover,
+.search-form button:focus {
+  background-color: #F38D68;
+  color: #000;
 }
 
 input {
@@ -69,6 +71,7 @@ input {
 
 .main-nav .active,
 .main-nav a:hover,
+.main-nav a:focus,
 .page-not-found a:hover {
   background-color: #CCC5B9;
   color: #000;
