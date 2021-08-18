@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Photo from './Photo';
 import NoResults from './NoResults';
 import Loading from './Loading';
