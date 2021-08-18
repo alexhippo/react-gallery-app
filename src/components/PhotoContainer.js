@@ -21,7 +21,13 @@ class PhotoContainer extends Component {
                                 ? <Loading />
                                 : (this.props.data.length > 0)
                                     ? this.props.data.map((photo) => {
-                                        return <Photo server={photo.server} id={photo.id} key={photo.id} secret={photo.secret} />
+                                        return <Photo
+                                            server={photo.server}
+                                            id={photo.id}
+                                            key={photo.id}
+                                            secret={photo.secret}
+                                            title={photo.title}
+                                        />
                                     })
                                     : <NoResults />
                     }
